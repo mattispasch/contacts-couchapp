@@ -1,0 +1,21 @@
+<div id="contactDetail">
+	<div class="dialog">
+		<div class="viewContact">
+			<a href="#/edit/{{contact._id}}" class="actionEdit">Bearbeiten</a>
+			<h1>{{contact.name}}</h1>
+			<span class="revision">Revision: {{contact._rev}}</span>
+			<h2>Telefonnummern</h2>
+			<p ng-repeat="p in contact.phones">
+				<b>{{p.label}}:</b> {{p.number}}
+			</p>
+			<h2>E-Mail Adressen</h2>
+
+			<p ng-repeat="email in contact.emails">{{email.address}}</p>
+
+			<h2>Anschriften</h2>
+
+			<p ng-repeat="pa in contact.postalAddresses">{{pa.address}}</p>
+		</div>
+	</div>
+</div>
+

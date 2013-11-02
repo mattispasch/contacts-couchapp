@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Kontaktliste</title>
+</head>
+<body>
+
+
+	<h1>Kontaktliste</h1>
+
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Telefon</th>
+			<th>E-Mail</th>
+		</tr>
+		{{#each contacts}}
+			<tr>
+				<td>
+					<a href="../../_show/detail/{{id}}">
+					{{#if name}}{{name}}{{else}}_KEIN NAME_{{/if}}
+					</a>
+				</td>
+				<td>
+					{{#each phones}}
+						{{label}}:{{number}},
+					{{/each}}
+				</td>
+				<td>
+					{{#each emails}}
+						{{address}}, 
+					{{/each}}
+				</td>
+			</tr>
+		{{/each}}
+	</table>
+
+</body>
+</html>

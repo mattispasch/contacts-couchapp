@@ -1,0 +1,19 @@
+{
+    "name": "Contacts",
+    "version": "0.0.1",
+    "description": "Contacts CouchApp by Mattis Pasch",
+    "attachments": 
+    	["index.html", "partials/", "js/", "jquery-ui/", "css/"],
+    "modules": ["lib"],
+    "load": "lib/app",
+    "handlebars": {
+        "all_partials": false,
+        "templates": "templates"
+    },
+    "dependencies": {
+        "attachments": null,
+        "modules": null,
+        "properties": null,
+        "handlebars": null
+    }
+}

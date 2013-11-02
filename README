@@ -1,0 +1,5 @@
+Kanso:
+
+sudo npm install -g kanso
+kanso install
+kanso push http://localhost:5984/{db_name}

@@ -1,0 +1,17 @@
+<div>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Telefon</th>
+			<th>E-Mail</th>
+		</tr>
+		<tr ng-repeat="contact in contacts">
+			<td><a href="#/detail/{{contact.value.id}}">{{contact.value.name}}</a>
+			</td>
+			<td><div ng-repeat="phone in contact.value.phones">{{phone.label}}:{{phone.number}},
+				</div></td>
+			<td><div ng-repeat="email in contact.value.emails">{{email.address}},
+				</div></td>
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,29 @@
+{{#with doc}}
+<html>
+<head>
+<title>Kontaktdetails: {{name}}</title>
+</head>
+<body>
+	<h1>{{name}}</h1>
+	
+	{{#if phones}}<h2>Telefonnummern</h2>{{/if}}
+	{{#each phones}}
+	<p>
+		<b>{{label}}:</b> {{number}}
+	</p>
+	{{/each}}
+	
+	{{#if emails}}<h2>E-Mail Adressen</h2>{{/if}}
+	{{#each emails}}
+	<p>
+		{{address}}
+	</p>
+	{{/each}}
+	
+	{{#if postalAddresses}}<h2>Anschriften</h2>{{/if}}
+	{{#each postalAddresses}}
+		<p>{{address}}</p>
+	{{/each}}
+</body>
+</html>
+{{/with}}

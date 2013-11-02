@@ -1,0 +1,18 @@
+div.menu {
+	background-color: #999999;
+	position: absolute;
+	width: 200px;
+	height: 100%;
+}
+
+
+div.content {
+	position: absolute;
+	left: 220px;
+}
+
+span.revision {
+	font-size: 8pt;
+	color: #bbbbbb;
+	
+}

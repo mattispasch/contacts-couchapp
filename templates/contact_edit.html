@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Album eintragen</title>
+<script src="../js/jquery.js" type="text/javascript"></script>
+</head>
+<body>
+	<script type="text/javascript">
+	function submit() {
+		//test if json is valid
+		JSON.parse($("#json").val());
+		var ajaxSettings = {
+				type : "PUT",
+				url :  "/vortrag/" + $("#id").val(),
+				data : $("#json").val()
+			};
+			$.ajax(ajaxSettings).done(function(msg) {
+				$("#messagebox").html("Message: " + msg);
+			}).fail(function(a,b,c) {
+				$("#messagebox").html("ERROR!");
+			})
+	}
+</script>
+	<form action="javascript:submit()">
+		<p>
+			ID: <input id="id" type="text" />
+		</p>
+		<p>
+			JSON: <textarea id="json">
+				{
+					"type": "album",
+					"artist": "",
+					"title": "",
+					"songs": [ {"title": ""} , {"title": ""}]
+				}
+			</textarea>
+		</p>
+
+		<input type="submit" value="Eintragen" />
+	</form>
+	<div id="messagebox"></div>
+</body>
+</html>
