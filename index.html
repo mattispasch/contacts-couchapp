@@ -16,8 +16,10 @@
 <script src="js/lib/angular-1.2.0-rc.3/angular-resource.js"></script>
 <script src="js/lib/angular-1.2.0-rc.3/angular-route.js"></script>
 
+<!-- helpers -->
+<script src="js/lib/uuid.js"></script>
 
-<!-- local -->
+<!-- our JS -->
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="js/contacts-controller.js"></script>
 
@@ -27,8 +29,13 @@
 <body>
 	<div>
 		<div class="menu">
+			<h2>Contacts-App</h2>
 			<ul>
 				<li><a href="#/list">Alle Kontakte</a></li>
+				<li><a href="#/new">Kontakt anlegen</a></li>
+			</ul>
+			<h2>Andere Links</h2>
+			<ul>			
 				<li><a href="_list/html/all">[LIST] Alle Kontakte</a></li>
 			</ul>
 		</div>

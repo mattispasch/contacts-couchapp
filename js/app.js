@@ -11,6 +11,9 @@ contactsApp.config([ '$routeProvider', function($routeProvider) {
 	}).when('/edit/:contactId', {
 		templateUrl : 'partials/edit.html',
 		controller : 'EditCtrl'
+	}).when('/new', {
+		templateUrl : 'partials/edit.html',
+		controller : 'EditCtrl'
 	}).otherwise({
 		redirectTo : '/list'
 	});
