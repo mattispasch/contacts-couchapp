@@ -18,9 +18,9 @@ function ListCtrl($scope, $http) {
 
 } ]);
 
-contactsControllers.controller('DetailCtrl', [ '$scope', '$http', '$routeParams',
+contactsControllers.controller('DetailCtrl', [ '$scope', '$http', '$routeParams', '$location',
 
-function DetailCtrl($scope, $http, $routeParams) {
+function DetailCtrl($scope, $http, $routeParams, $location) {
 
 	var id = $routeParams.contactId;
 
@@ -30,6 +30,20 @@ function DetailCtrl($scope, $http, $routeParams) {
 		$scope.contact = data;
 	});
 
+	
+		
+	
+	// ACTIONS
+	$scope.deleteContact = function() {
+		var deleteURL = url + "?rev=" + $scope.contact._rev;
+		$http({url: deleteURL, method: "DELETE"}).success(function(status) {
+			alert("L&ouml;schen erfolgreich: " + JSON.stringify(status));
+			$location.path("/list");
+		}).error(function(status) {
+			alert("Fehler beim Löschen: " + JSON.stringify(status));
+		});
+	};
+	
 } ]);
 
 contactsControllers.controller('EditCtrl', [ '$scope', '$http', '$routeParams', '$location',
@@ -53,6 +67,16 @@ function EditCtrl($scope, $http, $routeParams, $location) {
 		});
 	}
 
+	// GETTER
+	$scope.hasPhones = function() {
+		return $scope.contact !== undefined && $scope.contact.phones !== undefined && $scope.contact.phones.length > 0;
+	};
+	$scope.hasEmails = function() {
+		return $scope.contact !== undefined && $scope.contact.emails !== undefined && $scope.contact.emails.length > 0;
+	};
+	
+	
+	// ACTIONS
 	$scope.newPhone = function() {
 		if ($scope.contact.phones === undefined) {
 			$scope.contact.phones = [];
@@ -102,6 +126,9 @@ function EditCtrl($scope, $http, $routeParams, $location) {
 			alert("Fehler beim Speichern!");
 			$scope.status = status;
 		});
-	}
+	};
+	$scope.abort = function() {
+		$location.path("/detail/" + id);
+	};
 
 } ]);

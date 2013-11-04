@@ -6,30 +6,36 @@
 	</h1>
 	<span class="revision">ID: {{contact._id}}</span>
 	<span class="revision">Revision: {{contact._rev}}</span>
-	<h2>Telefonnummern</h2>
+	<h2>Telefonnummern
+		<a href="" ng-click="newPhone()" class="newPhone"><img src="images/icons/add.png" alt="Hinzuf&uuml;gen"/></a>
+	</h2>
 
 	<p ng-repeat="p in contact.phones">
 		<b><input type="text" ng-model="p.label" />:</b> <input type="text"
-			ng-model="p.number" /> <a href="" ng-click="deletePhone()">L&ouml;schen</a>
+			ng-model="p.number" /> <a href="" ng-click="deletePhone()"><img src="images/icons/close.png" alt="L&ouml;schen"/></a>
 	</p>
-	<a href="" ng-click="newPhone()" class="newPhone">Nummer
-		hinzuf&uuml;gen...</a>
+	<p ng-if="!hasPhones()">Keine Telefonnummern vorhanden.</p>
 
-	<h2>E-Mail Adressen</h2>
+	<h2>E-Mail Adressen
+		<a href="" ng-click="newEmail()"><img src="images/icons/add.png" alt="Hinzuf&uuml;gen"/></a>
+	</h2>
 	<p ng-repeat="email in contact.emails">
 		<input type="text" ng-model="email.address" /><a href=""
-			ng-click="deleteEmail()">L&ouml;schen</a>
+			ng-click="deleteEmail()"><img src="images/icons/close.png" alt="L&ouml;schen"/></a>
 	</p>
-	<a href="" ng-click="newEmail()">E-Mail hinzuf&uuml;gen...</a>
+	<p ng-if="!hasEmails()">Keine E-Mail-Adressen vorhanden.</p>
 
-	<h2>Anschriften</h2>
-
+	
+	<h2>Anschriften
+		<a href="" ng-click="newPostalAddress()"><img src="images/icons/add.png" alt="Hinzuf&uuml;gen"/></a>
+	</h2>
 	<p ng-repeat="pa in contact.postalAddresses">
 		<input type="text" ng-model="pa.address" /><a href=""
-			ng-click="deletePostalAddress()">L&ouml;schen</a>
+			ng-click="deletePostalAddress()"><img src="images/icons/close.png" alt="L&ouml;schen"/></a>
 	</p>
-	<a href="" ng-click="newPostalAddress()">Anschrift hinzuf&uuml;gen</a>
+	
 
 
-	<button ng-click="save()">Speichern!</button>
+	<button ng-click="save()">Speichern!</button> 
+	<button ng-click="abort()">Abbrechen</button>
 </form>

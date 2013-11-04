@@ -1,7 +1,9 @@
 <div id="contactDetail">
 	<div class="dialog">
 		<div class="viewContact">
-			<a href="#/edit/{{contact._id}}" class="actionEdit">Bearbeiten</a>
+			<span><a href="#/edit/{{contact._id}}" class="actionEdit"><img src="images/icons/edit.png" alt="Bearbeiten" /></a>
+				<a href="" ng-click="deleteContact()"><img src="images/icons/close.png" alt="L&ouml;schen"/></a>
+			</span>
 			<h1>{{contact.name}}</h1>
 			<span class="revision">Revision: {{contact._rev}}</span>
 			<h2>Telefonnummern</h2>
