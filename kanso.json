@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "description": "Contacts CouchApp by Mattis Pasch",
     "attachments": 
-    	["index.html", "partials/", "js/", "images/", "jquery-ui/", "css/"],
+    	["index.html", "mobile.html", "no-menu.html", "partials/", "js/", "images/", "jquery-ui/", "css/"],
     "modules": ["lib"],
     "load": "lib/app",
     "handlebars": {

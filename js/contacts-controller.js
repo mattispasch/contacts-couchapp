@@ -30,34 +30,38 @@ function DetailCtrl($scope, $http, $routeParams, $location) {
 		$scope.contact = data;
 	});
 
-	
-		
-	
 	// ACTIONS
 	$scope.deleteContact = function() {
 		var deleteURL = url + "?rev=" + $scope.contact._rev;
-		$http({url: deleteURL, method: "DELETE"}).success(function(status) {
+		$http({
+			url : deleteURL,
+			method : "DELETE"
+		}).success(function(status) {
 			alert("L&ouml;schen erfolgreich: " + JSON.stringify(status));
 			$location.path("/list");
 		}).error(function(status) {
 			alert("Fehler beim Löschen: " + JSON.stringify(status));
 		});
 	};
-	
+
 } ]);
 
 contactsControllers.controller('EditCtrl', [ '$scope', '$http', '$routeParams', '$location',
 
 function EditCtrl($scope, $http, $routeParams, $location) {
 
-	const DB_NAME = "contacts"
-	
+	const
+	DB_NAME = "contacts";
+
 	var id = $routeParams.contactId;
 
 	if (id === undefined) {
 		// new contact
 		var id = generateUUID();
-		$scope.contact = {"_id": id, type: "contact"};			
+		$scope.contact = {
+			"_id" : id,
+			type : "contact"
+		};
 		$scope.url = "/" + DB_NAME + "/" + id;
 	} else {
 		// edit existing contact
@@ -67,6 +71,18 @@ function EditCtrl($scope, $http, $routeParams, $location) {
 		});
 	}
 
+	// Receive available PhoneLabels:
+	var labelUrl = "_view/phoneLabels?group=true"
+	$http.get(labelUrl).success(function(data) {
+		if (data.rows) {
+			// sort by appearence count (DESC)
+			data.rows.sort(function(a, b) {
+				return b.value - a.value;
+			});
+			$scope.phoneLabels = data.rows;
+		}
+	});
+
 	// GETTER
 	$scope.hasPhones = function() {
 		return $scope.contact !== undefined && $scope.contact.phones !== undefined && $scope.contact.phones.length > 0;
@@ -74,8 +90,7 @@ function EditCtrl($scope, $http, $routeParams, $location) {
 	$scope.hasEmails = function() {
 		return $scope.contact !== undefined && $scope.contact.emails !== undefined && $scope.contact.emails.length > 0;
 	};
-	
-	
+
 	// ACTIONS
 	$scope.newPhone = function() {
 		if ($scope.contact.phones === undefined) {
@@ -108,6 +123,24 @@ function EditCtrl($scope, $http, $routeParams, $location) {
 	};
 	$scope.deletePostalAddress = function() {
 		$scope.contact.postalAddresses.splice(this.$index, 1);
+	};
+	$scope.onPhoneLabelChange = function() {
+		if (this.$parent.p.label === 'createNewPhoneLabel') {
+			$("#newPhoneLabelDialog").dialog({
+				resizable : false,
+			});
+			$scope.phoneLabelChangeNumberRef = this.$parent.p;
+		}
+	};
+	$scope.newPhoneLabelSubmit = function() {
+		$scope.phoneLabels.push({
+			key : $scope.newPhoneLabelText,
+			value : 1
+		});
+		$scope.phoneLabelChangeNumberRef.label = $scope.newPhoneLabelText;
+		delete ($scope.phoneLabelChangeNumberRef);
+		$scope.newPhoneLabelText = "";
+		$("#newPhoneLabelDialog").dialog("close");
 	};
 
 	$scope.save = function() {

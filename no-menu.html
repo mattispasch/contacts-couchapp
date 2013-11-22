@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="contactsApp">
+<head>
+<!-- JQuery -->
+<script type="text/javascript" src="js/lib/jquery.js"></script>
+<script type="text/javascript" src="js/lib/jquery-migrate-1.2.1.js"></script>
+<script type="text/javascript" src="js/lib/jquery.couch.js"></script>
+
+<!-- JQuery UI -->
+<script type="text/javascript" src="jquery-ui/ui/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+<!-- AngularJS -->
+<script src="js/lib/angular-1.2.0-rc.3/angular.js"></script>
+<script src="js/lib/angular-1.2.0-rc.3/angular-resource.js"></script>
+<script src="js/lib/angular-1.2.0-rc.3/angular-route.js"></script>
+
+<!-- helpers -->
+<script src="js/lib/uuid.js"></script>
+
+<!-- our JS -->
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/contacts-controller.js"></script>
+
+<link rel="stylesheet" href="css/contacts-mobile.css" type="text/css"></link>
+
+</head>
+<body>
+	<div class="content" ng-view></div>
+</body>
+</html>

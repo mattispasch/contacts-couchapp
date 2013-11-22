@@ -11,7 +11,16 @@
 	</h2>
 
 	<p ng-repeat="p in contact.phones">
-		<b><input type="text" ng-model="p.label" />:</b> <input type="text"
+		
+		<b ng-if="!phoneLabels"><input type="text" ng-model="p.label" />:</b>
+		<b ng-if="phoneLabels">
+			<select ng-model="p.label" ng-change="onPhoneLabelChange()">
+				<option ng-repeat="label in phoneLabels" ng-selected="p.label == label.key" value="{{label.key}}">{{label.key}}</option>
+				<option value="createNewPhoneLabel">Neues Label erstellen</option>
+			</select>:
+		</b> 
+		
+		<input type="text"
 			ng-model="p.number" /> <a href="" ng-click="deletePhone()"><img src="images/icons/close.png" alt="L&ouml;schen"/></a>
 	</p>
 	<p ng-if="!hasPhones()">Keine Telefonnummern vorhanden.</p>
@@ -42,4 +51,10 @@
 
 	<button ng-click="save()">Speichern!</button> 
 	<button ng-click="abort()">Abbrechen</button>
+	
+	<div id="newPhoneLabelDialog" style="display:none">
+		<b>Name des neuen Labels: </b>
+		<input type="text" ng-model="newPhoneLabelText" />
+		<button ng-click="newPhoneLabelSubmit()">Erstellen</button>
+	</div>
 </form>
